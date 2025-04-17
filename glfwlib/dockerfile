@@ -1,0 +1,17 @@
+# dockerfile to help build glfw3 library file. file is located at /usr/src/glfw/build/src/libglfw3.a after compilation
+# using the latest version of ubuntu from dockerhub
+FROM ubuntu:latest
+
+# install dependencies required for glfw build
+RUN apt-get -y update && apt-get install -y
+RUN apt-get -y install clang git cmake ninja-build
+RUN apt-get -y install pkg-config libwayland-dev libxkbcommon-dev libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev
+
+# clone glfw github repo
+RUN cd /usr/src && git clone https://github.com/glfw/glfw.git
+
+RUN cd /usr/src/glfw && cmake -B build -G Ninja
+
+WORKDIR /usr/src/glfw/build
+
+CMD ["ninja"]

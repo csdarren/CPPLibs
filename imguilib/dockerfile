@@ -1,0 +1,14 @@
+FROM ubuntu:latest
+
+RUN apt-get -y update && apt-get install -y
+RUN apt-get -y install clang git cmake ninja-build
+RUN cd /usr/src/ && git clone https://github.com/ocornut/imgui.git
+RUN cd /usr/src/imgui && mv backends/imgui_impl_opengl3* ./
+
+COPY CMakeLists.txt /usr/src/imgui/ 
+
+RUN cd /usr/src/imgui && cmake -B build -G Ninja
+
+WORKDIR /usr/src/imgui/build
+
+CMD ["ninja"]

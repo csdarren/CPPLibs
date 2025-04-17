@@ -1,0 +1,12 @@
+FROM ubuntu:latest
+
+RUN apt-get -y update && apt-get install -y
+RUN apt-get -y install clang cmake ninja-build
+
+COPY ./glad/ /usr/src/glad
+RUN ls
+RUN cd /usr/src/glad && cmake -B build -G Ninja
+
+WORKDIR /usr/src/glad/build
+
+CMD ["ninja"]
