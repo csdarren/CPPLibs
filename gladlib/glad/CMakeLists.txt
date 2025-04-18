@@ -9,13 +9,8 @@ set(CMAKE_CXX_STANDARD 11)
 # Include directories
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-# Add the source files
-set(SOURCES
-glad.c
-)
-
 # Create the static library
-add_library(glad STATIC ${SOURCES})
+add_library(glad.c STATIC)
 
 # Link any dependencies if needed
 if (WIN32)

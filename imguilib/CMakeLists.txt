@@ -24,9 +24,9 @@ add_library(imgui STATIC ${SOURCES})
 
 # Link any dependencies if needed
 if (WIN32)
-target_link_libraries(imgui opengl32 glfw3 gdi32 winmm)
+target_link_libraries(imgui)
 endif()
 
 if (UNIX)
-target_link_libraries(imgui opengl32 glfw3 gdi32)
+target_link_libraries(imgui)
 endif()
